@@ -2,7 +2,7 @@ pipeline {
     agent any
      environment {
         
-        AWS_REGION = credentials('us-west-1')
+        AWS_REGION = 'us-west-1'
         ECR_REGISTRY_URL = '854171615125.dkr.ecr.us-west-1.amazonaws.com/sangini-jenkins-repo'
     }
     stages {

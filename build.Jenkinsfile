@@ -7,7 +7,7 @@ pipeline {
     }
     stages {
         stage('Build Yolo5 app') {
-            dir(D:\jenkins\app_development_I\yolo5) {
+            dir(yolo5) {
                 sh "pwd"
                     }
             steps {

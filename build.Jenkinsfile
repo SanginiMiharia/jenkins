@@ -5,9 +5,6 @@ pipeline {
         AWS_REGION = 'us-west-1'
         ECR_REGISTRY_URL = '854171615125.dkr.ecr.us-west-1.amazonaws.com/sangini-jenkins-repo'
     }
-     dir(yolo5) {
-                sh "pwd"
-                    }
     stages {
         stage('Build Yolo5 app') {
             steps {

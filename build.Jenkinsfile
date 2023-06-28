@@ -1,13 +1,26 @@
 pipeline {
-    agent any
+    agent { docker { image 'sangini-jenkins-repo' } }
+     environment {
+        AWS_REGION = credentials('us-west-1')
+        ECR_REGISTRY_URL = '854171615125.dkr.ecr.us-west-1.amazonaws.com/sangini-jenkins-repo'
+    }
     stages {
-        stage('Build') {
+        stage('Build Yolo5 app') {
             steps {
-                sh 'echo "Hello World"'
                 sh '''
-                    echo "Multiline shell steps works too"
-                    ls -lah
+                    aws ecr get-login-password --region us-west-1 | docker login --username AWS --password-stdin 854171615125.dkr.ecr.us-west-1.amazonaws.com
+                    docker build -t sangini-jenkins-repo .
+                    docker tag sangini-jenkins-repo:latest 854171615125.dkr.ecr.us-west-1.amazonaws.com/sangini-jenkins-repo:latest
+                    docker push 854171615125.dkr.ecr.us-west-1.amazonaws.com/sangini-jenkins-repo:latest
                 '''
+                }
+            }
+        stage('Push to ECR') {
+
+            steps {
+
+                sh 'echo pushing...'
+
             }
         }
     }

@@ -1,6 +1,7 @@
 pipeline {
-    agent { docker { image 'sangini-jenkins-repo' } }
+    agent any
      environment {
+        
         AWS_REGION = credentials('us-west-1')
         ECR_REGISTRY_URL = '854171615125.dkr.ecr.us-west-1.amazonaws.com/sangini-jenkins-repo'
     }
@@ -16,13 +17,6 @@ pipeline {
                 '''
                 }
             }
-        stage('Push to ECR') {
-
-            steps {
-
-                sh 'echo pushing...'
-
-            }
         }
     }
-}
+    

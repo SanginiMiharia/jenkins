@@ -35,6 +35,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def upload_file_api():
     if 'file' not in request.files:
         return 'No file attached', 400
+    
 
     file = request.files['file']
     logger.info(f'attached file: {request.files["file"]}')
